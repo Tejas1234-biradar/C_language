@@ -1,10 +1,10 @@
 #include <stdio.h>
-void inputMatrix(int a[10][10],int c,int r){
+void inputMatrix(int a[10][10],int* c,int* r){
     printf("Enter the number of coloumns and rows\n");
-    scanf("%d %d",&c,&r);
-    for (int i = 0; i < r; i++)
+    scanf("%d %d",c,r);
+    for (int i = 0; i < *r; i++)
     {
-        for (int j = 0; j < c; j++)
+        for (int j = 0; j < *c; j++)
         {
             scanf("%d",&a[i][j]);
         }
@@ -15,7 +15,7 @@ void upperTriangular(int a[10][10],int c,int r,int trans[10][10]){
     {
         for (int j = 0; j < c; j++)
         {
-            if(i<j){
+            if(i>j){
                 trans[i][j]=0; 
             }
             else{
@@ -29,7 +29,7 @@ void lowerTriangular(int a[10][10],int c,int r,int trans[10][10]){
     {
         for (int j = 0; j < c; j++)
         {
-            if(i>j){
+            if(i<j){
                 trans[i][j]=0;
             }
              else{
@@ -50,7 +50,8 @@ void printMatrix(int a[10][10],int c,int r){
 }
 int main(){
     int r,c,upTrans[10][10],a[10][10],lowTrans[10][10];
-    inputMatrix(a,c,r);
+
+    inputMatrix(a,&c,&r);
     upperTriangular(a,c,r,upTrans);
     lowerTriangular(a,c,r,lowTrans);
     printf("The upper triangular matrix is \n");    
